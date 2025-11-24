@@ -1,6 +1,7 @@
-import { Lexer } from "../modules/Lexer.controller"
-import { TokenType, type ILexer, type Token } from "../types/Lexer.types"
-import { Lexical, Separators, SyntaxChars } from "../types/Syntax.types"
+import { Lexer } from "../modules/Lexer/Lexer.controller"
+import { type ILexer } from "../types/Lexer.types"
+import { Lexical, SyntaxChars } from "../types/Syntax.types"
+import { TokenType, type Token } from "../types/Token.types"
 
 describe("Lexer", () => {
    let lexer: ILexer
@@ -8,8 +9,7 @@ describe("Lexer", () => {
    beforeAll(() => {
       lexer = new Lexer({
          syntaxChars: SyntaxChars,
-         lexical: Lexical,
-         separators: Separators
+         lexical: Lexical
       })
    })
 
@@ -100,6 +100,6 @@ describe("Lexer", () => {
       ~
     `
 
-      expect(() => lexer.tokenize(input)).toThrow(/Unexpected char/)
+      expect(() => lexer.tokenize(input)).toThrow(/Lexer stuck/)
    })
 })
