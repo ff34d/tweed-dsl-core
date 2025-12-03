@@ -18,14 +18,11 @@ export const SyntaxChars = {
 export const Lexical = {
    WHITESPACE: /[ \t]+/,
    NEWLINE: /\r?\n/,
-   WORD: /[a-zA-Z_-]/
-} as const
-
-export const Separators = {
-   LIST: /[,\s\n]+/,
-   CONFIG: /[,\s\n]+/
+   WORD: /[a-zA-Z_-]/,
+   PROGRAM: /(diagram)[ \t]+([a-z]+)[ \t]"([\S ?t]+)"/,
+   ASSIGN: /[=]/,
+   SEPARATOR: /[,]/
 } as const
 
 export type TSyntaxChars = typeof SyntaxChars
 export type TLexical = typeof Lexical
-export type TSeparators = typeof Separators

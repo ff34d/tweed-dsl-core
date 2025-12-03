@@ -6,7 +6,6 @@ export interface Token {
 export enum TokenType {
    comment = "comment",
    directive = "directive",
-   assign = "assign",
    string = "string",
    id = "id",
    config = "config",
