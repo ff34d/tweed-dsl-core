@@ -1,5 +1,5 @@
 import type { NodeConfig } from "../../../types/SemanticModel"
-import type { TLexical } from "../../../types/Syntax.types"
+import type { TLexical } from "../../../types/Syntax"
 
 export function parseConfig(s: string, L: TLexical): NodeConfig {
    const rows = s.split(L.SEPARATOR).map((v) => v.trim())

@@ -1,4 +1,4 @@
-import { NodeType, type BaseNode } from "../Base.types"
+import { NodeType, type BaseNode } from "../Base"
 
 export interface CommentNode extends BaseNode {
    type: NodeType.COMMENT

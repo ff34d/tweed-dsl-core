@@ -1,5 +1,5 @@
-import type { TLexical } from "../../../types/Syntax.types"
-import { TokenType, type TokenRule } from "../../../types/Token.types"
+import type { TLexical } from "../../../types/Syntax"
+import { TokenType, type TokenRule } from "../../../types/Token"
 
 export function makeWhitespaceRule(L: TLexical): TokenRule {
    return {

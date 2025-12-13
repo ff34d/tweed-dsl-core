@@ -1,6 +1,6 @@
-import { type ASTParser } from "../../../types/Ast.types"
+import { type ASTParser } from "../../../types/Ast"
 import { NodeType } from "../../../types/SemanticModel"
-import { TokenType } from "../../../types/Token.types"
+import { TokenType } from "../../../types/Token"
 import { parseList } from "../utils/parseList"
 
 export const parseDirective: ASTParser = (ctx, L) => {

@@ -1,4 +1,4 @@
-import { NodeType, type BaseNode, type NodeConfig } from "../Base.types"
+import { NodeType, type BaseNode, type NodeConfig } from "../Base"
 
 export enum EntityName {
    BLOCK = "block",

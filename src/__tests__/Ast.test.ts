@@ -1,7 +1,7 @@
-import { AST } from "../modules/Ast/Ast.controller"
-import { Lexical } from "../types/Syntax.types"
-import { lexerParsed } from "../mocks/lexerParsed"
 import { astParsed } from "../mocks/astParsed"
+import { lexerParsed } from "../mocks/lexerParsed"
+import { AST } from "../modules/Ast/Ast"
+import { Lexical } from "../types/Syntax"
 
 describe("AST", () => {
    it("Parse after lexer", () => {

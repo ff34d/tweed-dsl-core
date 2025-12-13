@@ -1,7 +1,7 @@
-import { NodeType, type BaseNode } from "../Base.types"
-import type { CommentNode } from "./CommentNode.types"
-import type { DirectiveNode } from "./DirectiveNode.types"
-import type { EntityNode } from "./EntityNode.types"
+import { NodeType, type BaseNode } from "../Base"
+import type { CommentNode } from "./CommentNode"
+import type { DirectiveNode } from "./DirectiveNode"
+import type { EntityNode } from "./EntityNode"
 
 export enum ProgramName {
    FLOWCHART = "flowchart"

@@ -1,5 +1,5 @@
-import type { IR } from "../../types/Ir.types"
-import type { ISemanticAnalyzer, SemanticRule } from "../../types/SemanticAnalyzer.types"
+import type { IR } from "../../types/Ir"
+import type { ISemanticAnalyzer, SemanticRule } from "../../types/SemanticAnalyzer"
 import { NodeType, type BaseNode, type ProgramNode } from "../../types/SemanticModel"
 import { commentRule } from "./rules/commentRule"
 import { directiveRule } from "./rules/directiveRule"

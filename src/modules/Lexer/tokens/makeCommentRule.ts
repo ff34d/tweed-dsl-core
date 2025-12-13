@@ -1,5 +1,5 @@
-import type { TLexical, TSyntaxChars } from "../../../types/Syntax.types"
-import { TokenType, type TokenRule } from "../../../types/Token.types"
+import type { TLexical, TSyntaxChars } from "../../../types/Syntax"
+import { TokenType, type TokenRule } from "../../../types/Token"
 import { readUntil } from "../../../utils/readUntil"
 
 export function makeCommentRule(S: TSyntaxChars, L: TLexical): TokenRule {

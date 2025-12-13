@@ -1,4 +1,4 @@
-import type { SemanticRule } from "../../../types/SemanticAnalyzer.types"
+import type { SemanticRule } from "../../../types/SemanticAnalyzer"
 import { isCommentNode } from "../../../types/SemanticModel"
 
 export const commentRule: SemanticRule = (n) => {

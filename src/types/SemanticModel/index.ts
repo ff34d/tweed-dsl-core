@@ -1,2 +1,2 @@
+export * from "./Base"
 export * from "./Nodes"
-export * from "./Base.types"

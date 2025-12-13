@@ -1,5 +1,5 @@
-import type { TLexical, TSyntaxChars } from "./Syntax.types"
-import type { Token } from "./Token.types"
+import type { TLexical, TSyntaxChars } from "./Syntax"
+import type { Token } from "./Token"
 
 export interface ILexer {
    tokenize(input: string): Token[]

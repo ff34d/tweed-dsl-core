@@ -1,4 +1,4 @@
-import type { IR } from "../types/Ir.types"
+import type { IR } from "../types/Ir"
 import {
    DirectiveName,
    EntityName,

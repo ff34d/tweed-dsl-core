@@ -1,6 +1,6 @@
 import type { BaseNode, ProgramNode } from "./SemanticModel"
-import type { TLexical } from "./Syntax.types"
-import type { Token, TokenType } from "./Token.types"
+import type { TLexical } from "./Syntax"
+import type { Token, TokenType } from "./Token"
 
 export interface IAST {
    parse(): ProgramNode[]

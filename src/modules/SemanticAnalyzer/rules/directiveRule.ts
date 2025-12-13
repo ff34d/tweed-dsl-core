@@ -1,4 +1,4 @@
-import type { SemanticRule } from "../../../types/SemanticAnalyzer.types"
+import type { SemanticRule } from "../../../types/SemanticAnalyzer"
 import { DirectiveName, isDirectiveNode } from "../../../types/SemanticModel"
 
 export const directiveRule: SemanticRule = (n) => {

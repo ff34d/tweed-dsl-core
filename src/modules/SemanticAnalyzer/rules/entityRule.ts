@@ -1,4 +1,4 @@
-import type { SemanticRule } from "../../../types/SemanticAnalyzer.types"
+import type { SemanticRule } from "../../../types/SemanticAnalyzer"
 import { EntityName, isEntityNode } from "../../../types/SemanticModel"
 
 export const entityRule: SemanticRule = (n) => {

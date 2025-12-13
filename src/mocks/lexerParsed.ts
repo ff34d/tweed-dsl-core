@@ -1,4 +1,4 @@
-import { TokenType, type Token } from "../types/Token.types"
+import { TokenType, type Token } from "../types/Token"
 
 // Reference dslCode
 export const lexerParsed: Token[] = [

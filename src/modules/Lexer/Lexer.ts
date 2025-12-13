@@ -1,5 +1,5 @@
-import { type ILexer, type ILexerConstructor } from "../../types/Lexer.types"
-import { TokenType, type Token, type TokenRule } from "../../types/Token.types"
+import { type ILexer, type ILexerConstructor } from "../../types/Lexer"
+import { TokenType, type Token, type TokenRule } from "../../types/Token"
 import { makeCommentRule } from "./tokens/makeCommentRule"
 import { makeConfigRule } from "./tokens/makeConfigRule"
 import { makeDirectiveRule } from "./tokens/makeDirectiveRule"

@@ -1,4 +1,4 @@
-import type { IR } from "./Ir.types"
+import type { IR } from "./Ir"
 import type { BaseNode } from "./SemanticModel"
 
 export interface ISemanticAnalyzer {

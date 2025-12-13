@@ -1,4 +1,4 @@
-import { type BaseNode, NodeType, type NodeList } from "../Base.types"
+import { NodeType, type BaseNode, type NodeList } from "../Base"
 
 export enum DirectiveName {
    GROUP = "group"

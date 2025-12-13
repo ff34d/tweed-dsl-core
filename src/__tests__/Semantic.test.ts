@@ -1,5 +1,5 @@
 import { astParsed } from "../mocks/astParsed"
-import { SemanticAnalyzer } from "../modules/SemanticAnalyzer/SemanticAnalyzer.controller"
+import { SemanticAnalyzer } from "../modules/SemanticAnalyzer/SemanticAnalyzer"
 
 describe("Semantic", () => {
    it("Analyze", () => {

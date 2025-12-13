@@ -1,8 +1,8 @@
-import { Lexer } from "../modules/Lexer/Lexer.controller"
-import { type ILexer } from "../types/Lexer.types"
-import { Lexical, SyntaxChars } from "../types/Syntax.types"
 import { dslCode, dslCodeLexerStuckError } from "../mocks/dslCodes"
 import { lexerParsed } from "../mocks/lexerParsed"
+import { Lexer } from "../modules/Lexer/Lexer"
+import { type ILexer } from "../types/Lexer"
+import { Lexical, SyntaxChars } from "../types/Syntax"
 
 describe("Lexer", () => {
    let lexer: ILexer
