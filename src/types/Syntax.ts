@@ -21,7 +21,11 @@ export const Lexical = {
    WORD: /[a-zA-Z_-]/,
    PROGRAM: /(diagram)[ \t]+([a-z]+)[ \t]"([\S ?t]+)"/,
    ASSIGN: /[=]/,
-   SEPARATOR: /[,]/
+   SEPARATOR: /[,]/,
+   LIST_OPEN: /[(]/,
+   LIST_CLOSE: /[)]/,
+   STRING_QUOTE: /["]/,
+   LIST: /\([,"\s\w]+\)/
 } as const
 
 export type TSyntaxChars = typeof SyntaxChars

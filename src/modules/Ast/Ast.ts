@@ -1,6 +1,6 @@
 import { type ASTParser, type IAST, type IASTConstructor } from "../../types/Ast"
 import { NodeType, type ProgramNode } from "../../types/SemanticModel"
-import type { TLexical } from "../../types/Syntax"
+import type { TLexical, TSyntaxChars } from "../../types/Syntax"
 import { TokenType, type Token } from "../../types/Token"
 import { parseComment } from "./parsers/parseComment"
 import { parseDirective } from "./parsers/parseDirective"
@@ -10,12 +10,14 @@ export class AST implements IAST {
    readonly #TOKEN_PARSERS: Record<string, ASTParser>
    readonly #TOKENS: readonly Token[]
    readonly #L: TLexical
+   readonly #S: TSyntaxChars
 
    #i = 0
 
    constructor(props: IASTConstructor) {
       this.#TOKENS = Object.freeze(props.tokens)
       this.#L = Object.freeze(props.lexical)
+      this.#S = Object.freeze(props.syntax)
 
       this.#TOKEN_PARSERS = {
          [TokenType.comment]: parseComment,
@@ -36,7 +38,7 @@ export class AST implements IAST {
             continue
          }
 
-         const program = parseComment(this, this.#L)
+         const program = parseComment(this, this.#L, this.#S)
          if (program.type === NodeType.PROGRAM) {
             this.consume()
             programs.push(program as ProgramNode)
@@ -58,7 +60,7 @@ export class AST implements IAST {
             continue
          }
 
-         const node = parser(this, this.#L)
+         const node = parser(this, this.#L, this.#S)
          if (node.type === NodeType.PROGRAM) break
          program.nodes.push(node)
       }

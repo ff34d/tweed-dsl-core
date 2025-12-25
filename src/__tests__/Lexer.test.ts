@@ -1,8 +1,7 @@
-import { dslCode, dslCodeLexerStuckError } from "../mocks/dslCodes"
-import { lexerParsed } from "../mocks/lexerParsed"
-import { Lexer } from "../modules/Lexer/Lexer"
-import { type ILexer } from "../types/Lexer"
-import { Lexical, SyntaxChars } from "../types/Syntax"
+import { Lexer, Lexical, SyntaxChars } from "../main"
+import { InputText, InputTextStackError } from "../mocks/inputText"
+import { LexerResult } from "../mocks/lexerResult"
+import type { ILexer } from "../types/Lexer"
 
 describe("Lexer", () => {
    let lexer: ILexer
@@ -15,11 +14,11 @@ describe("Lexer", () => {
    })
 
    it("Create AST", () => {
-      const ast = lexer.tokenize(dslCode)
-      expect(JSON.stringify(ast)).toEqual(JSON.stringify(lexerParsed))
+      const ast = lexer.tokenize(InputText)
+      expect(JSON.stringify(ast)).toEqual(JSON.stringify(LexerResult))
    })
 
    it("Throw unknown char", () => {
-      expect(() => lexer.tokenize(dslCodeLexerStuckError)).toThrow(/Lexer stuck/)
+      expect(() => lexer.tokenize(InputTextStackError)).toThrow(/Lexer stuck/)
    })
 })

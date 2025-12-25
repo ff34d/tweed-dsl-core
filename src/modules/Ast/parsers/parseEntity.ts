@@ -3,7 +3,7 @@ import { NodeType } from "../../../types/SemanticModel"
 import { TokenType } from "../../../types/Token"
 import { parseConfig } from "../utils/parseConfig"
 
-export const parseEntity: ASTParser = (ctx, L) => {
+export const parseEntity: ASTParser = (ctx, L, S) => {
    const nameToken = ctx.expect(TokenType.word, "Expected entity name")
    const id = ctx.expect(TokenType.id, "Entity does not have id")
 
@@ -17,7 +17,7 @@ export const parseEntity: ASTParser = (ctx, L) => {
    let config: Record<string, any> | undefined
    if (ctx.current()?.type === TokenType.config) {
       const c = ctx.consume()!
-      config = parseConfig(c.value, L)
+      config = parseConfig(c.value, L, S)
    }
 
    return {

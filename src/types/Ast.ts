@@ -1,5 +1,5 @@
 import type { BaseNode, ProgramNode } from "./SemanticModel"
-import type { TLexical } from "./Syntax"
+import type { TLexical, TSyntaxChars } from "./Syntax"
 import type { Token, TokenType } from "./Token"
 
 export interface IAST {
@@ -13,7 +13,8 @@ export interface IAST {
 
 export interface IASTConstructor {
    tokens: Token[]
+   syntax: TSyntaxChars
    lexical: TLexical
 }
 
-export type ASTParser = (ctx: IAST, L: TLexical) => BaseNode
+export type ASTParser = (ctx: IAST, L: TLexical, S: TSyntaxChars) => BaseNode

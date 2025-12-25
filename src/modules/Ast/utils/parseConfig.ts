@@ -1,14 +1,49 @@
 import type { NodeConfig } from "../../../types/SemanticModel"
-import type { TLexical } from "../../../types/Syntax"
+import type { TLexical, TSyntaxChars } from "../../../types/Syntax"
+import { readUntil } from "../../../utils/readUntil"
+import { parseList } from "./parseList"
 
-export function parseConfig(s: string, L: TLexical): NodeConfig {
-   const rows = s.split(L.SEPARATOR).map((v) => v.trim())
+export function parseConfig(s: string, L: TLexical, S: TSyntaxChars): NodeConfig {
    const map: NodeConfig = {}
+   let i = 0
 
-   for (const r of rows) {
-      const struct = r.split(L.ASSIGN).map((v) => v.trim())
-      if (!struct[0] || !struct[1]) throw new Error(`Config parse failed at ${r}`)
-      map[struct[0]] = struct[1].replaceAll('"', "")
+   while (i < s.length) {
+      if (!s[i + 1]) break
+
+      const propertyEndIndex = readUntil(s, i, (c) => {
+         if (c === S.COMMENT) throw new Error(`Parse config stuck at ${s[i]}, ${i}`)
+         return L.ASSIGN.test(c)
+      })
+      if (propertyEndIndex === -1) throw new Error(`Parse config stuck at ${s[i]}, ${i}`)
+
+      const property = s.slice(i, propertyEndIndex).replaceAll(",", "").trim()
+
+      i = propertyEndIndex + 1
+
+      const propertyValueEndIndex = readUntil(s, i, (c) => {
+         return L.SEPARATOR.test(c) || L.LIST_OPEN.test(c)
+      })
+
+      if (propertyValueEndIndex === -1) throw new Error("q")
+
+      if (L.LIST_OPEN.test(s[propertyValueEndIndex]!)) {
+         const list = s.slice(propertyValueEndIndex).match(L.LIST)
+         if (list === null)
+            throw new Error(
+               `Parse config stuck at ${s[propertyValueEndIndex]}, ${propertyValueEndIndex}`
+            )
+         const parsedList = parseList(list[0].slice(1, -1), L)
+         map[property] = parsedList
+         i = propertyValueEndIndex + list[0].length + 1
+         continue
+      }
+
+      const propertyValue = s
+         .slice(i, propertyValueEndIndex)
+         .replaceAll(new RegExp(L.STRING_QUOTE, "g"), "")
+         .trim()
+      map[property] = propertyValue
+      i = propertyValueEndIndex + 1
    }
 
    return map
