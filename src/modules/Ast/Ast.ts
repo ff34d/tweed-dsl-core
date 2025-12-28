@@ -9,14 +9,14 @@ import { parseFlow } from "./parsers/parseFlow"
 
 export class AST implements IAST {
    readonly #TOKEN_PARSERS: Record<string, ASTParser>
-   readonly #TOKENS: readonly Token[]
    readonly #L: TLexical
    readonly #S: TSyntaxChars
+
+   #tokens: Token[] = []
 
    #i = 0
 
    constructor(props: IASTConstructor) {
-      this.#TOKENS = Object.freeze(props.tokens)
       this.#L = Object.freeze(props.lexical)
       this.#S = Object.freeze(props.syntax)
 
@@ -28,7 +28,8 @@ export class AST implements IAST {
       }
    }
 
-   public parse(): ProgramNode[] {
+   public parse(tokens: Token[]): ProgramNode[] {
+      this.#tokens = tokens
       const programs: ProgramNode[] = []
 
       while (!this.eof()) {
@@ -74,7 +75,7 @@ export class AST implements IAST {
    }
 
    public current(): Token | null {
-      return this.#TOKENS[this.#i] ?? null
+      return this.#tokens[this.#i] ?? null
    }
 
    public consume(): Token | null {
@@ -91,10 +92,10 @@ export class AST implements IAST {
    }
 
    public peek(offset = 1): Token | null {
-      return this.#TOKENS[this.#i + offset] ?? null
+      return this.#tokens[this.#i + offset] ?? null
    }
 
    public eof(): boolean {
-      return this.#i >= this.#TOKENS.length
+      return this.#i >= this.#tokens.length
    }
 }

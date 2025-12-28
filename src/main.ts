@@ -1,5 +1,6 @@
 // ========== Modules ==========
 export { AST } from "./modules/Ast/Ast"
+export { DslApi } from "./modules/DslApi/DslApi"
 export { Lexer } from "./modules/Lexer/Lexer"
 export { SemanticAnalyzer } from "./modules/SemanticAnalyzer/SemanticAnalyzer"
 
@@ -7,9 +8,12 @@ export { SemanticAnalyzer } from "./modules/SemanticAnalyzer/SemanticAnalyzer"
 export {
    DirectiveName,
    EntityName,
+   FlowNodeConnectionDirection,
+   FlowNodeConnectionStyle,
    isCommentNode,
    isDirectiveNode,
    isEntityNode,
+   isFlowNode,
    isProgramNode,
    NodeType,
    ProgramName,
@@ -18,6 +22,8 @@ export {
    type CommentNode,
    type DirectiveNode,
    type EntityNode,
+   type FlowNode,
+   type FlowNodeConnection,
    type NodeConfig,
    type NodeList,
    type ProgramNode

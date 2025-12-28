@@ -3,7 +3,7 @@ import type { TLexical, TSyntaxChars } from "./Syntax"
 import type { Token, TokenType } from "./Token"
 
 export interface IAST {
-   parse(): ProgramNode[]
+   parse(tokens: Token[]): ProgramNode[]
    current(): Token | null
    peek(offset?: number): Token | null
    consume(): Token | null
@@ -12,7 +12,6 @@ export interface IAST {
 }
 
 export interface IASTConstructor {
-   tokens: Token[]
    syntax: TSyntaxChars
    lexical: TLexical
 }

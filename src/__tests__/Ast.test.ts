@@ -6,9 +6,8 @@ describe("AST", () => {
    it("Parse after lexer", () => {
       const result = new AST({
          lexical: Lexical,
-         syntax: SyntaxChars,
-         tokens: LexerResult
-      }).parse()
+         syntax: SyntaxChars
+      }).parse(LexerResult)
 
       expect(result.length).toEqual(2)
       expect(JSON.stringify(result)).toEqual(JSON.stringify(AstResult))
