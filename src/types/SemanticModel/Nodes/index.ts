@@ -1,4 +1,5 @@
 export * from "./CommentNode"
 export * from "./DirectiveNode"
 export * from "./EntityNode"
+export * from "./FlowNode"
 export * from "./ProgramNode"

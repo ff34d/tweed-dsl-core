@@ -5,7 +5,8 @@ export enum NodeType {
    PROGRAM = "program",
    ENTITY = "entity",
    DIRECTIVE = "directive",
-   COMMENT = "comment"
+   COMMENT = "comment",
+   FLOW = "flow"
 }
 
 export interface BaseNode {

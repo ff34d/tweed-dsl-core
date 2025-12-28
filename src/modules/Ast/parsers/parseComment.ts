@@ -14,7 +14,8 @@ export const parseComment: ASTParser = (ctx, L) => {
          schemeType: match[1],
          name: match[2],
          label: match[3],
-         nodes: []
+         nodes: [],
+         flows: []
       }
    }
 

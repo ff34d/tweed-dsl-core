@@ -12,7 +12,7 @@ export function parseConfig(s: string, L: TLexical, S: TSyntaxChars): NodeConfig
 
       const propertyEndIndex = readUntil(s, i, (c) => {
          if (c === S.COMMENT) throw new Error(`Parse config stuck at ${s[i]}, ${i}`)
-         return L.ASSIGN.test(c)
+         return c === S.ASSIGN
       })
       if (propertyEndIndex === -1) throw new Error(`Parse config stuck at ${s[i]}, ${i}`)
 
@@ -21,18 +21,18 @@ export function parseConfig(s: string, L: TLexical, S: TSyntaxChars): NodeConfig
       i = propertyEndIndex + 1
 
       const propertyValueEndIndex = readUntil(s, i, (c) => {
-         return L.SEPARATOR.test(c) || L.LIST_OPEN.test(c)
+         return L.SEPARATOR.test(c) || c === S.LIST_OPEN
       })
 
       if (propertyValueEndIndex === -1) throw new Error("q")
 
-      if (L.LIST_OPEN.test(s[propertyValueEndIndex]!)) {
+      if (s[propertyValueEndIndex]! === S.LIST_OPEN) {
          const list = s.slice(propertyValueEndIndex).match(L.LIST)
          if (list === null)
             throw new Error(
                `Parse config stuck at ${s[propertyValueEndIndex]}, ${propertyValueEndIndex}`
             )
-         const parsedList = parseList(list[0].slice(1, -1), L)
+         const parsedList = parseList(list[0].slice(1, -1), L, S)
          map[property] = parsedList
          i = propertyValueEndIndex + list[0].length + 1
          continue
@@ -40,7 +40,7 @@ export function parseConfig(s: string, L: TLexical, S: TSyntaxChars): NodeConfig
 
       const propertyValue = s
          .slice(i, propertyValueEndIndex)
-         .replaceAll(new RegExp(L.STRING_QUOTE, "g"), "")
+         .replaceAll(S.STRING_QUOTE, "")
          .trim()
       map[property] = propertyValue
       i = propertyValueEndIndex + 1

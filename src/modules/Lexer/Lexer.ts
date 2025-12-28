@@ -5,6 +5,7 @@ import { makeConfigRule } from "./tokens/makeConfigRule"
 import { makeDirectiveRule } from "./tokens/makeDirectiveRule"
 import { makeIdRule } from "./tokens/makeIdRule"
 import { makeListRule } from "./tokens/makeListRule"
+import { makePointerRule } from "./tokens/makePointerRule"
 import { makeStringRule } from "./tokens/makeStringRule"
 import { makeWhitespaceRule } from "./tokens/makeWhitespaceRule"
 import { makeWordRule } from "./tokens/makeWordRule"
@@ -24,7 +25,8 @@ export class Lexer implements ILexer {
          makeDirectiveRule(S, L),
          makeCommentRule(S, L),
          makeStringRule(S),
-         makeWordRule(L)
+         makeWordRule(L),
+         makePointerRule(L)
       ]
    }
 

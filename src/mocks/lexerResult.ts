@@ -28,6 +28,30 @@ export const LexerResult: Token[] = [
       value: "\n    test_block_1, \n    test_triangle, \n    test_block_2\n"
    },
 
+   { type: TokenType.id, value: "test_block_1" },
+   { type: TokenType.pointer, value: "->" },
+   { type: TokenType.id, value: "test_block_2" },
+
+   { type: TokenType.id, value: "test_block_1" },
+   { type: TokenType.pointer, value: "<-" },
+   { type: TokenType.id, value: "test_block_2" },
+
+   { type: TokenType.id, value: "test_block_1" },
+   { type: TokenType.pointer, value: "<->" },
+   { type: TokenType.id, value: "test_block_2" },
+
+   { type: TokenType.id, value: "test_block_1" },
+   { type: TokenType.pointer, value: "-->" },
+   { type: TokenType.id, value: "test_block_2" },
+
+   { type: TokenType.id, value: "test_block_1" },
+   { type: TokenType.pointer, value: "<--" },
+   { type: TokenType.id, value: "test_block_2" },
+
+   { type: TokenType.id, value: "test_block_1" },
+   { type: TokenType.pointer, value: "<-->" },
+   { type: TokenType.id, value: "test_block_2" },
+
    { type: TokenType.comment, value: 'diagram flowchart "Test program 2"' },
 
    { type: TokenType.word, value: "block" },

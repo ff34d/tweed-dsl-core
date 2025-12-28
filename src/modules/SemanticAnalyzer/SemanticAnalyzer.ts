@@ -4,6 +4,7 @@ import { NodeType, type BaseNode, type ProgramNode } from "../../types/SemanticM
 import { commentRule } from "./rules/commentRule"
 import { directiveRule } from "./rules/directiveRule"
 import { entityRule } from "./rules/entityRule"
+import { flowRule } from "./rules/flowRule"
 import { programRule } from "./rules/programRule"
 
 export class SemanticAnalyzer implements ISemanticAnalyzer {
@@ -14,7 +15,8 @@ export class SemanticAnalyzer implements ISemanticAnalyzer {
          [NodeType.PROGRAM]: programRule,
          [NodeType.DIRECTIVE]: directiveRule,
          [NodeType.COMMENT]: commentRule,
-         [NodeType.ENTITY]: entityRule
+         [NodeType.ENTITY]: entityRule,
+         [NodeType.FLOW]: flowRule
       }
    }
 
@@ -27,18 +29,18 @@ export class SemanticAnalyzer implements ISemanticAnalyzer {
    }
 
    #expectProgram(programNode: ProgramNode): boolean {
-      if (!this.#rules.program(programNode)) return false
+      if (!this.#rules.program(programNode, programNode)) return false
 
-      for (const node of programNode.nodes) {
-         if (!this.#expectNode(node)) return false
+      for (const node of [...programNode.nodes, ...programNode.flows]) {
+         if (!this.#expectNode(node, programNode)) return false
       }
 
       return true
    }
 
-   #expectNode(node: BaseNode): boolean {
+   #expectNode(node: BaseNode, programNode: ProgramNode): boolean {
       const rule = this.#rules[node.type]
       if (!rule) throw new Error(`Unexpected rule for node ${node.type}`)
-      return rule(node)
+      return rule(node, programNode)
    }
 }

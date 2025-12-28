@@ -2,12 +2,12 @@ import type { TLexical } from "../../../types/Syntax"
 import { TokenType, type TokenRule } from "../../../types/Token"
 import { readUntil } from "../../../utils/readUntil"
 
-export function makeWordRule(L: TLexical): TokenRule {
+export function makePointerRule(L: TLexical): TokenRule {
    return {
-      name: TokenType.word,
+      name: TokenType.pointer,
       match(input, i) {
-         if (input[i] && !L.WORD.test(input[i])) return null
-         const end = readUntil(input, i, (c) => !L.WORD.test(c))
+         if (input[i] && !L.POINTER.test(input[i])) return null
+         const end = readUntil(input, i + 1, (c) => !L.POINTER.test(c))
 
          return {
             end: end,

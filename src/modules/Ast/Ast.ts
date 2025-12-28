@@ -5,6 +5,7 @@ import { TokenType, type Token } from "../../types/Token"
 import { parseComment } from "./parsers/parseComment"
 import { parseDirective } from "./parsers/parseDirective"
 import { parseEntity } from "./parsers/parseEntity"
+import { parseFlow } from "./parsers/parseFlow"
 
 export class AST implements IAST {
    readonly #TOKEN_PARSERS: Record<string, ASTParser>
@@ -22,7 +23,8 @@ export class AST implements IAST {
       this.#TOKEN_PARSERS = {
          [TokenType.comment]: parseComment,
          [TokenType.directive]: parseDirective,
-         [TokenType.word]: parseEntity
+         [TokenType.word]: parseEntity,
+         [TokenType.pointer]: parseFlow
       }
    }
 
@@ -62,6 +64,11 @@ export class AST implements IAST {
 
          const node = parser(this, this.#L, this.#S)
          if (node.type === NodeType.PROGRAM) break
+         if (node.type === NodeType.FLOW) {
+            program.flows.push(node)
+            continue
+         }
+
          program.nodes.push(node)
       }
    }

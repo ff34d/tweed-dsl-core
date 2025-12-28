@@ -11,7 +11,8 @@ export enum TokenType {
    config = "config",
    list = "list",
    word = "word",
-   whitespace = "whitespace"
+   whitespace = "whitespace",
+   pointer = "pointer"
 }
 
 export interface TokenRule {

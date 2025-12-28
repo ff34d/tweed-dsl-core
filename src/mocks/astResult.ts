@@ -6,6 +6,10 @@ import {
    ProgramSchemeType,
    type IR
 } from "../main"
+import {
+   FlowNodeConnectionDirection,
+   FlowNodeConnectionStyle
+} from "../types/SemanticModel"
 
 export const AstResult: IR = [
    {
@@ -46,6 +50,62 @@ export const AstResult: IR = [
             id: "test_group",
             list: ["test_block_1", "test_triangle", "test_block_2"]
          }
+      ],
+      flows: [
+         {
+            type: NodeType.FLOW,
+            connection: {
+               style: FlowNodeConnectionStyle["-"],
+               direction: FlowNodeConnectionDirection[">"],
+               from: "test_block_1",
+               to: "test_block_2"
+            }
+         },
+         {
+            type: NodeType.FLOW,
+            connection: {
+               style: FlowNodeConnectionStyle["-"],
+               direction: FlowNodeConnectionDirection["<"],
+               from: "test_block_1",
+               to: "test_block_2"
+            }
+         },
+         {
+            type: NodeType.FLOW,
+            connection: {
+               style: FlowNodeConnectionStyle["-"],
+               direction: FlowNodeConnectionDirection["<>"],
+               from: "test_block_1",
+               to: "test_block_2"
+            }
+         },
+         {
+            type: NodeType.FLOW,
+            connection: {
+               style: FlowNodeConnectionStyle["--"],
+               direction: FlowNodeConnectionDirection[">"],
+               from: "test_block_1",
+               to: "test_block_2"
+            }
+         },
+         {
+            type: NodeType.FLOW,
+            connection: {
+               style: FlowNodeConnectionStyle["--"],
+               direction: FlowNodeConnectionDirection["<"],
+               from: "test_block_1",
+               to: "test_block_2"
+            }
+         },
+         {
+            type: NodeType.FLOW,
+            connection: {
+               style: FlowNodeConnectionStyle["--"],
+               direction: FlowNodeConnectionDirection["<>"],
+               from: "test_block_1",
+               to: "test_block_2"
+            }
+         }
       ]
    },
    {
@@ -61,6 +121,7 @@ export const AstResult: IR = [
             label: "block label",
             config: undefined
          }
-      ]
+      ],
+      flows: []
    }
 ] as const
