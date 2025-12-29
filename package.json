@@ -15,6 +15,13 @@
       "lib/esm",
       "lib/cjs"
    ],
+   "exports": {
+      ".": {
+         "import": "./dist/lib/esm/index.esm.js",
+         "require": "./dist/lib/cjs/index.cjs.js",
+         "types": "./dist/types/index.d.ts"
+      }
+   },
    "scripts": {
       "build": "rm -rf ./dist && rollup --config",
       "test": "jest",
